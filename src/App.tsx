@@ -5,13 +5,13 @@ import Footer from './Components/footer';
 import Header from './Components/header';
 import Catalog from './Components/catalog';
 import { Box } from '@mui/material';
+import Slider from './Components/slider';
 
 function App() {
   return (
     <Box sx={{backgroundColor:'black'}}>
       <Header />
-      <Catalog />
-      <Catalog />
+      <Slider />
       <Catalog />
       <Footer />
     </Box>

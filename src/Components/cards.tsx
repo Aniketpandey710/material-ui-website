@@ -5,31 +5,35 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 
 interface props{
     title:string
     description:string
-    image:string
+    image?:string
+
 }
 
 export const MediaCard:React.FC<props> = ({title, description, image}) => {
+    const theme = useTheme()
+    // theme.typography.fontFamily
   return (
-    <Card sx={{ maxWidth: 345, m: 2 , height:'40vh', width:'20vw', "&:hover": { transform: "scale3d(1.05, 1.05, 1)" }}}>
+    <Card sx={{ maxWidth: 345, m: 2 , height:'40vh', minWidth:'20vh', "&:hover": { transform: "scale3d(1.05, 1.05, 1)" }}}>
       <CardMedia
         component="img"
         sx={{ height: '40%' }}
-        image={image}
+        image={image ? `${image}` :`https://source.unsplash.com/featured/?${title}`}
         title={title}
       />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+      <CardContent sx={{height:'35%'}}>
+        <Typography fontFamily={'nato sans'} gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography fontFamily={'nato sans'} variant="caption" color="text.secondary">
           {description}
         </Typography>
       </CardContent>
-      <CardActions>
+      <CardActions >
         <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
