@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Home', 'Shop', 'About Us', 'Contact Us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
@@ -36,10 +36,11 @@ function Header() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor: 'rgba(0,0,0,0.75)'}}>
+    <AppBar position="static" sx={{backgroundColor: 'rgba(0,0,0,1)'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <img src='logo.avif' width='150rem'></img>
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -56,9 +57,9 @@ function Header() {
             }}
           >
             LOGO
-          </Typography>
+          </Typography> */}
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }, height:'10r0em' }}>
             <IconButton
               size="large"
               aria-label="account of current user"

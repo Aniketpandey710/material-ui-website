@@ -1,0 +1,4 @@
+    /* Example: Adjust the position of the dots */
+    .slick-dots {
+      bottom: 20px;
+    }
