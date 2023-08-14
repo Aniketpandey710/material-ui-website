@@ -10,24 +10,26 @@ import './carouselStyles.css'
 
 // Define the type for each banner data
 interface BannerData {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
     imageUrl: string;
+    color?:string;
   }
   
   // Prop type for the CarouselBanner component
   interface CarouselBannerProps {
     banners: BannerData[];
+    isSlider?:boolean;
   }
   
-  const CarouselBanner: React.FC<CarouselBannerProps> = ({ banners }) => {
+  const CarouselBanner: React.FC<CarouselBannerProps> = ({ banners, isSlider=true }) => {
     const settings = {
-      dots: true,
-      infinite: true,
+      dots: isSlider,
+      infinite: isSlider,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      autoplay: true,
+      autoplay: isSlider,
       autoplaySpeed: 3000,
     };
     return (
@@ -47,7 +49,7 @@ interface BannerData {
               alignItems: 'center',
             }}
           >
-            <Box textAlign="center" color="white">
+            <Box textAlign="center" color={banner.color}>
               <Typography variant="h3" component="h1" gutterBottom>
                 {banner.title}
               </Typography>
