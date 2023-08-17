@@ -4,9 +4,9 @@ import
     motion,
     MotionProps,
     PanInfo
-} from 'framer-motion';
-import React, { ReactNode, useCallback, useEffect, useRef } from 'react';
-import { StyledItem } from './styled';
+} from 'framer-motion'
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react'
+import { StyledItem } from './styled'
 
 export interface CarouselItemProps
 {
@@ -29,45 +29,45 @@ export interface CarouselItemProps
 
 export const CarouselItem = ({ animation, next, prev, swipe, state, index, maxIndex, duration, child, height, setHeight }: CarouselItemProps) =>
 {
-    const slide = animation === 'slide';
-    const fade = animation === 'fade';
+    const slide = animation === 'slide'
+    const fade = animation === 'fade'
 
     const dragProps: MotionProps = {
         drag: 'x',
         layout: true,
         onDragEnd: (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo): void =>
         {
-            if (!swipe) return;
+            if (!swipe) return
 
-            if (info.offset.x > 0) prev && prev();
-            else if (info.offset.x < 0) next && next();
+            if (info.offset.x > 0) prev && prev()
+            else if (info.offset.x < 0) next && next()
 
-            event.stopPropagation();
+            event.stopPropagation()
         },
         dragElastic: 0,
         dragConstraints: { left: 0, right: 0 }
     }
 
-    const divRef = useRef<any>(null);
+    const divRef = useRef<any>(null)
 
     const checkAndSetHeight = useCallback(() => {
-        if (index !== state.active) return;
-        if (!divRef.current) return;
+        if (index !== state.active) return
+        if (!divRef.current) return
 
         if (divRef.current.offsetHeight === 0)
         {
-            setTimeout(() => checkAndSetHeight(), 100);
+            setTimeout(() => checkAndSetHeight(), 100)
         }
         else
         {
-            setHeight(divRef.current.offsetHeight);
+            setHeight(divRef.current.offsetHeight)
         }
     }, [setHeight, state.active, index, divRef])
 
     // Set height on every child change
     useEffect(() =>
     {
-        checkAndSetHeight();
+        checkAndSetHeight()
             
     }, [checkAndSetHeight])
 
@@ -104,27 +104,27 @@ export const CarouselItem = ({ animation, next, prev, swipe, state, index, maxIn
             zIndex: 1,
             // position: 'relative'
         },
-    };
+    }
 
     // Handle animation directions and opacity given based on active, prevActive and this item's index
-    const { active, next: isNext, prevActive } = state;
-    let animate = 'center';
+    const { active, next: isNext, prevActive } = state
+    let animate = 'center'
     if (index === active)
-        animate = 'center';
+        animate = 'center'
     else if (index === prevActive)
     {
-        animate = isNext ? 'leftwardExit' : 'rightwardExit';
-        if (active === maxIndex && index === 0) animate = 'rightwardExit';
+        animate = isNext ? 'leftwardExit' : 'rightwardExit'
+        if (active === maxIndex && index === 0) animate = 'rightwardExit'
         if (active === 0 && index === maxIndex) animate = 'leftwardExit'
     }
     else
     {
-        animate = index < active ? 'leftOut' : 'rightOut';
-        if (active === maxIndex && index === 0) animate = 'rightOut';
+        animate = index < active ? 'leftOut' : 'rightOut'
+        if (active === maxIndex && index === 0) animate = 'rightOut'
         if (active === 0 && index === maxIndex) animate = 'leftOut'
     }
 
-    duration = duration / 1000;
+    duration = duration / 1000
 
     return (
         <StyledItem>

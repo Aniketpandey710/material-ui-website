@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
     FormControlLabel,
     Radio,
@@ -6,7 +6,7 @@ import {
     Slider,
     Typography,
     Switch,
-} from '@mui/material';
+} from '@mui/material'
 
 export interface SettingsT {
     autoPlay: boolean,
@@ -60,8 +60,8 @@ const Settings = ({settings, setSettings}: SettingsProps) => {
 
     /** Default function for Sliders */
     const slider = (event: any, value: any) => {
-        console.log(event);
-        console.log(value);
+        console.log(event)
+        console.log(value)
         setSettings({
             ...settings,
             [event.target.name]: value
@@ -135,8 +135,8 @@ const Settings = ({settings, setSettings}: SettingsProps) => {
                                     min={100}
                                     max={3000}
                                     onChangeCommitted={(e: any, v: any) => {
-                                        e.target.name = 'duration';
-                                        slider(e, v);
+                                        e.target.name = 'duration'
+                                        slider(e, v)
                                     }}
                                 />
                             </div>
@@ -150,4 +150,4 @@ const Settings = ({settings, setSettings}: SettingsProps) => {
     )
 }
 
-export default Settings;
+export default Settings

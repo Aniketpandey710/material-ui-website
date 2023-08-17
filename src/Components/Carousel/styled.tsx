@@ -1,33 +1,33 @@
-import FiberManualRecord from '@mui/icons-material/FiberManualRecord';
-import { IconButton, styled } from '@mui/material';
+import FiberManualRecord from '@mui/icons-material/FiberManualRecord'
+import { IconButton, styled } from '@mui/material'
 
 export const StyledRoot = styled("div")({
     position: "relative",
     overflow: "hidden",
-});
+})
 
 export const StyledItem = styled("div")({
     position: "absolute",
     height: "100%",
     width: '100%',
     //    flexGrow: 1
-});
+})
 
 export const StyledItemWrapper = styled("div")({
     position: 'relative',
     width: '100%',
     height: '100%',
-});
+})
 
 export const StyledIndicators = styled("div")({
     width: "100%",
     marginTop: "10px",
     textAlign: "center"
-});
+})
 
 export const StyledFiberManualRecordIcon = styled(FiberManualRecord)({
     fontSize: "15px",
-});
+})
 
 export const StyledIndicatorIconButton = styled(
     IconButton,
@@ -43,7 +43,7 @@ export const StyledIndicatorIconButton = styled(
     '&:active': {
         color: $active ? "#494949" : "#1f1f1f",
     }
-}));
+}))
 
 export const StyledIconButton = styled(
     IconButton,
@@ -61,7 +61,7 @@ export const StyledIconButton = styled(
     '&:hover': {
         opacity: "0.6 !important",
     },
-}));
+}))
 
 export const StyledButtonWrapper = styled(
     "div",
@@ -85,4 +85,4 @@ export const StyledButtonWrapper = styled(
     } : undefined),
     ...($next ? { right: 0 } : undefined),
     ...($prev ? { left: 0 } : undefined),
-}));
+}))

@@ -1,9 +1,9 @@
-import NavigateBefore from '@mui/icons-material/NavigateBefore';
-import NavigateNext from '@mui/icons-material/NavigateNext';
-import { CarouselNavProps, CarouselProps } from './types';
-import React, { ReactNode, useEffect, useRef } from 'react';
-import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material';
+import NavigateBefore from '@mui/icons-material/NavigateBefore'
+import NavigateNext from '@mui/icons-material/NavigateNext'
+import { CarouselNavProps, CarouselProps } from './types'
+import React, { ReactNode, useEffect, useRef } from 'react'
+import { SxProps } from '@mui/system'
+import { Theme } from '@mui/material'
 
 export interface SanitizedCarouselProps extends CarouselProps
 {
@@ -52,12 +52,12 @@ export interface SanitizedCarouselNavProps extends CarouselNavProps
 {
     style: React.CSSProperties,
     className: string
-};
+}
 
 
 export const sanitizeNavProps = (props: CarouselNavProps | undefined): SanitizedCarouselNavProps =>
 {
-    const { className, style, ...rest } = props || {};
+    const { className, style, ...rest } = props || {}
 
     return props !== undefined ? {
         style: props.style !== undefined ? props.style : {},
@@ -68,8 +68,8 @@ export const sanitizeNavProps = (props: CarouselNavProps | undefined): Sanitized
 
 export const sanitizeProps = (props: CarouselProps): SanitizedCarouselProps =>
 {
-    const animation = props.animation !== undefined ? props.animation : "fade";
-    const duration = props.duration !== undefined ? props.duration : (animation === "fade" ? 500 : 200);
+    const animation = props.animation !== undefined ? props.animation : "fade"
+    const duration = props.duration !== undefined ? props.duration : (animation === "fade" ? 500 : 200)
 
     return {
         sx: props.sx !== undefined ? props.sx : {},
@@ -117,27 +117,27 @@ export const sanitizeProps = (props: CarouselProps): SanitizedCarouselProps =>
 
 export const useInterval = (callback: Function, delay: number) =>
 {
-    const savedCallback = useRef<Function>(() => { });
+    const savedCallback = useRef<Function>(() => { })
 
     // Remember the latest callback.
     useEffect(() =>
     {
-        savedCallback.current = callback;
-    }, [callback]);
+        savedCallback.current = callback
+    }, [callback])
 
     // Set up the interval.
     useEffect(() =>
     {
         function tick()
         {
-            savedCallback.current();
+            savedCallback.current()
         }
         if (delay !== null)
         {
-            let id = setInterval(tick, delay);
-            return () => clearInterval(id);
+            let id = setInterval(tick, delay)
+            return () => clearInterval(id)
         }
 
-        return () => { };
-    }, [delay]);
+        return () => { }
+    }, [delay])
 }

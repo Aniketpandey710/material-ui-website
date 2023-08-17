@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Settings, { DefaultSettingsT, SettingsT } from './settings';
-import Carousel from 'react-material-ui-carousel';
+import React, { useState } from 'react'
+import Settings, { DefaultSettingsT, SettingsT } from './settings'
+import Carousel from 'react-material-ui-carousel'
 import {
     Card,
     CardContent,
@@ -8,16 +8,16 @@ import {
     Typography,
     Grid,
     Button,
-} from '@mui/material';
+} from '@mui/material'
 
 
 const Slider = () => {
 
-    const [settings, setSettings] = useState<SettingsT>(DefaultSettingsT);
+    const [settings, setSettings] = useState<SettingsT>(DefaultSettingsT)
 
     return (
         <div style={{ marginTop: "50px", color: "#494949" }}>
-            {/* <Typography variant='h4'>Example: eBay&trade; style</Typography> */}
+            {/* <Typography variant='h4'>Example: eBay&trade style</Typography> */}
             <br/>
             <Carousel
                 className="Example"
@@ -40,7 +40,7 @@ const Slider = () => {
             <br/>
             {/* <Settings settings={settings} setSettings={setSettings}/> */}
         </div>
-    );
+    )
 }
 
 
@@ -63,10 +63,10 @@ interface BannerProps
 const Banner = (props: BannerProps) => {
 
     const contentPosition = props.contentPosition ? props.contentPosition : "left"
-    const totalItems: number = props.length ? props.length : 3;
-    const mediaLength = totalItems - 1;
+    const totalItems: number = props.length ? props.length : 3
+    const mediaLength = totalItems - 1
 
-    let items = [];
+    let items = []
     const content = (
         <Grid item xs={4} sx={{height:'50vh', backgroundColor:'rgb(31 31 31)', color:'white'}} key="content">
             <CardContent className="Content">
@@ -87,7 +87,7 @@ const Banner = (props: BannerProps) => {
 
 
     for (let i = 0; i < mediaLength; i++) {
-        const item = props.item.Items[i];
+        const item = props.item.Items[i]
 
         const media = (
             <Grid item xs={4} key={item.Name}>
@@ -105,15 +105,15 @@ const Banner = (props: BannerProps) => {
             </Grid>
         )
 
-        items.push(media);
+        items.push(media)
     }
 
     if (contentPosition === "left") {
-        items.unshift(content);
+        items.unshift(content)
     } else if (contentPosition === "right") {
-        items.push(content);
+        items.push(content)
     } else if (contentPosition === "middle") {
-        items.splice(items.length / 2, 0, content);
+        items.splice(items.length / 2, 0, content)
     }
 
     return (
@@ -189,4 +189,4 @@ const items: Item[] = [
 ]
 
 
-export default Slider;
+export default Slider

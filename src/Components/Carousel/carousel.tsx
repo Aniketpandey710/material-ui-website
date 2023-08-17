@@ -1,15 +1,15 @@
-import { CarouselItem } from './carouselItem';
-import { CarouselProps } from './types';
-import { Indicators } from './indicators';
-import { sanitizeProps, useInterval } from './util';
+import { CarouselItem } from './carouselItem'
+import { CarouselProps } from './types'
+import { Indicators } from './indicators'
+import { sanitizeProps, useInterval } from './util'
 import
 {
     StyledButtonWrapper,
     StyledIconButton,
     StyledItemWrapper,
     StyledRoot
-} from './styled';
-import React, { useEffect, useState } from 'react';
+} from './styled'
+import React, { useEffect, useState } from 'react'
 
 
 export const Carousel = (props: CarouselProps) =>
@@ -19,29 +19,29 @@ export const Carousel = (props: CarouselProps) =>
         active: 0,
         prevActive: 0,
         next: true
-    });
+    })
 
     /** Used to set carousel's height. It is being set by the CarouselItems */
-    const [childrenHeight, setChildrenHeight] = useState<number>();
-    const [paused, setPaused] = useState<boolean>(false);
+    const [childrenHeight, setChildrenHeight] = useState<number>()
+    const [paused, setPaused] = useState<boolean>(false)
 
-    const sanitizedProps = sanitizeProps(props);
+    const sanitizedProps = sanitizeProps(props)
 
     // componentDidMount & onIndexChange
     useEffect(() =>
     {
-        const { index, changeOnFirstRender } = sanitizedProps;
-        setNext(index, true, changeOnFirstRender);
+        const { index, changeOnFirstRender } = sanitizedProps
+        setNext(index, true, changeOnFirstRender)
     }, [sanitizedProps.index])
 
 
     useInterval(() =>
     {
-        const { autoPlay } = sanitizedProps;
+        const { autoPlay } = sanitizedProps
 
         if (autoPlay && !paused)
         {
-            next(undefined);
+            next(undefined)
         }
 
     }, sanitizedProps.interval)
@@ -50,50 +50,50 @@ export const Carousel = (props: CarouselProps) =>
 
     const next = (event: any) =>
     {
-        const { children, cycleNavigation } = sanitizedProps;
+        const { children, cycleNavigation } = sanitizedProps
 
-        let last = Array.isArray(children) ? children.length - 1 : 0;
-        const nextActive = state.active + 1 > last ? (cycleNavigation ? 0 : state.active) : state.active + 1;
+        let last = Array.isArray(children) ? children.length - 1 : 0
+        const nextActive = state.active + 1 > last ? (cycleNavigation ? 0 : state.active) : state.active + 1
 
         setNext(nextActive, true)
 
         if (event)
-            event.stopPropagation();
+            event.stopPropagation()
     }
 
     const prev = (event: any) =>
     {
-        const { children, cycleNavigation } = sanitizedProps;
+        const { children, cycleNavigation } = sanitizedProps
 
-        let last = Array.isArray(children) ? children.length - 1 : 0;
-        const nextActive = state.active - 1 < 0 ? (cycleNavigation ? last : state.active) : state.active - 1;
+        let last = Array.isArray(children) ? children.length - 1 : 0
+        const nextActive = state.active - 1 < 0 ? (cycleNavigation ? last : state.active) : state.active - 1
 
         setNext(nextActive, false)
 
         if (event)
-            event.stopPropagation();
+            event.stopPropagation()
     }
 
     const setNext = (index: number, isNext: boolean, runCallbacks: boolean = true) =>
     {
-        const { onChange, children, strictIndexing } = sanitizedProps;
+        const { onChange, children, strictIndexing } = sanitizedProps
 
         if (Array.isArray(children))
         {
-            if (strictIndexing && index > children.length - 1) index = children.length - 1;
-            if (strictIndexing && index < 0) index = 0;
+            if (strictIndexing && index > children.length - 1) index = children.length - 1
+            if (strictIndexing && index < 0) index = 0
         }
         else
         {
-            index = 0;
+            index = 0
         }
 
         if (runCallbacks)
         {
             if (isNext !== undefined)
-                isNext ? sanitizedProps.next(index, state.active) : sanitizedProps.prev(index, state.active);
+                isNext ? sanitizedProps.next(index, state.active) : sanitizedProps.prev(index, state.active)
 
-            onChange(index, state.active);
+            onChange(index, state.active)
         }
 
         if (isNext === undefined)
@@ -136,18 +136,18 @@ export const Carousel = (props: CarouselProps) =>
         indicatorIconButtonProps,
         activeIndicatorIconButtonProps,
         IndicatorIcon,
-    } = sanitizedProps;
+    } = sanitizedProps
 
     const showButton = (next = true) =>
     {
-        if (cycleNavigation) return true;
+        if (cycleNavigation) return true
 
-        const last = Array.isArray(children) ? children.length - 1 : 0;
+        const last = Array.isArray(children) ? children.length - 1 : 0
 
-        if (next && state.active === last) return false;
-        if (!next && state.active === 0) return false;
+        if (next && state.active === last) return false
+        if (!next && state.active === 0) return false
 
-        return true;
+        return true
     }   
 
     return (
@@ -250,4 +250,4 @@ export const Carousel = (props: CarouselProps) =>
     )
 }
 
-export default Carousel;
+export default Carousel
